@@ -3,9 +3,9 @@
 
 
 import logging
-import sys
 import yaml
 from os import getenv
+from os import _exit as exit
 from argparse import ArgumentParser
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from random import randint, shuffle
@@ -67,6 +67,7 @@ def start(bot, update):
 def stop(bot, update):
     if update.message.from_user['id'] == MASTER_ID:
         update.message.reply_text('No Master, please dont!')
+        exit(1)
     else:
         update.message.reply_text('Haxyu!!!')
 
@@ -166,10 +167,10 @@ def main():
     # start_polling() is non-blocking and will stop the bot gracefully.
     print "wow"
     updater.idle()
+    exit(1)
     print "wow stop!"
     updater.stop()
     print "wow exit!"
-    sys.exit()
 
 if __name__ == '__main__':
     main()
